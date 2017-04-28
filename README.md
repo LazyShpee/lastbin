@@ -1,0 +1,2 @@
+# lastbin
+Self-host pastebin
