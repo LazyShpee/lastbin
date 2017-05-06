@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{{context.options.appname}} - {{context.paste.name}}</title>
+    <meta charset="utf-8">
+    {(tmpl/include-css.html)}
+  </head>
+
+  <body bgcolor="#141414">
+
+    {(tmpl/navbar.html)}
+
+    <pre style='width: 100%' class="line-numbers"><code class="language-{{context.paste.language}}">{{context.paste.data}}</code></pre>
+    
+    <style>
+      nav, pre {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+      }
+      
+      pre {
+        border: 0 !important;
+        border-radius: 0 !important;
+        min-height: 100% !important;
+      }
+    </style>
+    {(tmpl/include-js.html)}
+
+  </body>
+</html>

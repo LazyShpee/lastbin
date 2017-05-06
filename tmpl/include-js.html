@@ -1,0 +1,81 @@
+<!-- Bootstrap -->
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<!-- Bootflat's JS files.-->
+<script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>
+<script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>
+<script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
+
+<script src="/js/prism.js"></script>
+
+<script>
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+String.prototype.hashCode = function() {
+  var hash = 0, i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};
+
+function submit() {
+  var dat = {
+    key : $('#paste_key').val() !== '',
+    data : $('#paste_data').val(),
+    expire : $('#paste_expire').val(),
+    name : $('#paste_name').val(),
+    language : $('#paste_language').val(),
+    privacy : $('#paste_privacy').val()
+  }
+  post('/api/paste', dat, 'post');
+}
+
+function login() {
+  var dat = {
+    username : $('#username').val(),
+    password : $('#password').val()
+  }
+  post('/api/signin', dat, 'post');
+}
+
+function register() {
+  var dat = {
+    username : $('#username').val(),
+    password : $('#password').val()
+  }
+  if (dat.password !== $('#password2').val()) {
+    alert('Passwords don\'t match');
+  } else {
+    post('/api/signup', dat, 'post');
+  }
+}
+
+</script>

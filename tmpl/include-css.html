@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
+<link rel="stylesheet" href="/css/prism.css">
+
+<style>
+/*input, textarea{
+  background-color:#666;
+  color: #FFF;
+}*/
+
+body {
+  background-color: #4c545f;
+}
+
+pre.code {
+  white-space: pre-wrap;
+  margin-left: 8em;
+}
+
+pre.code:before {
+  counter-reset: listing;
+}
+
+pre.code code {
+  counter-increment: listing;
+  text-align: left;
+  float: left;
+  clear: left;
+}
+
+pre.code code::before {
+  content: counter(listing) ". ";
+  display: inline-block;
+  float: left;
+  height: 3em;
+  padding-left: auto;
+  margin-left: auto;
+  text-align: right;
+}
+
+[class*="col-"] {
+  margin-bottom: 10px;
+}
+
+</style>

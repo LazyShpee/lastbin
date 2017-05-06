@@ -1,0 +1,64 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><i class="fa fa-file" aria-hidden="true"></i> {{context.options.appname}}</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-left">
+      <a class="btn navbar-btn btn-info" href="/">New Paste <i class="fa fa-plus" aria-hidden="true"></i></a>
+    </div>
+    <div class="navbar-left">
+      <ul class="nav navbar-nav">
+        <li><a>Public Pastes</a></li>
+      </ul>
+    </div>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{context.user or 'Guest'}}<b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu">
+            {% if context.user then %}
+              <li><a href="/api/signout">Sign Out</a></li>
+            {% else %}
+              <li><a data-toggle="modal" data-target="#userSignForm">Sign In/Up</a></li>
+            {% end %}
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+{% if not context.user then %}
+  <div class="modal" id="userSignForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title">User Login &amp; Registration</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <label>Username</label>
+                <input id="username" class="form-control" placeholder="Username" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <label>Password</label>
+                <input id="password" class="form-control" placeholder="Password" type="password">
+                <input id="password2" class="form-control" placeholder="Confirm Password" type="password">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Close</a>
+            <button type="button" class="btn btn-success" onClick="register()">Register</button>
+            <button type="button" class="btn btn-success" onClick="login()">Login</button>
+          </div>
+        </div>
+    </div>
+  </div>
+{% end %}
