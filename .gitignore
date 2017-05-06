@@ -1,3 +1,9 @@
+lastbin.db
+*~
+*test*
+deps/*
+*test*
+
 # Compiled Lua sources
 luac.out
 

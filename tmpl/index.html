@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{{context.options.appname}}</title>
+    <meta charset="utf-8">
+    {(tmpl/include-css.html)}
+  </head>
+
+  <body bgcolor="#5a6370">
+
+    {(tmpl/navbar.html)}
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <textarea id="paste_data" class="form-control" rows="10"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <input id="paste_name" class="form-control" placeholder="Paste Name" type="text">
+          </div>
+          <div class="col-md-2">
+            <select id="paste_language" class="form-control">
+              {% for i, v in ipairs(context.options.languages) do %}
+                <option value="i">{{v}}</option>
+              {% end %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select id="paste_privacy" class="form-control">
+              {% for i, v in ipairs(context.options.privacy) do %}
+                <option value="{{i}}">{{v[1]}}</option>
+              {% end %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select id="paste_expire" class="form-control">
+              {% for i, v in ipairs(context.options.durations) do %}
+                <option value="{{i}}">{{v[1]}}</option>
+              {% end %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input id="paste_key" class="form-control"  placeholder="Encryption Key" type="text">
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-success btn-block" onClick="submit();">Submit Paste</button>
+          </div>
+        </div>
+    </div>
+
+    {(tmpl/include-js.html)}
+
+  </body>
+</html>
