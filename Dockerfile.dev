@@ -1,0 +1,17 @@
+FROM node:7.10-slim
+
+RUN mkdir -p /lastbin
+
+ADD package.lua /lastbin
+
+RUN npm install -g nodemon@1.11.0 && \
+    apt-get update && \
+    apt-get install --no-install-recommends -y libsqlite3-dev && \
+    curl -L https://github.com/luvit/lit/raw/master/get-lit.sh --silent | sh && \
+    cd /lastbin && \
+    /lit install && \
+    rm -rf /var/lib/apt/lists /lit /luvi
+
+WORKDIR /lastbin
+
+CMD ["nodemon", "--exec", "/luvit", "--ext", "lua", "server.lua"]
